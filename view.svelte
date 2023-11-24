@@ -1,9 +1,9 @@
 <script>
     import { store, state, cache } from "./cache";
     $: items = { store: $store, state: $state };
-    cache(store, "tempoLocais", "");
+    cache(store, "bored", "boredapi.com/api/activity");
     $: !$state.local && ($state.local = 1110600);
-    $: $state.local && cache(store, "tempoActual", "" + $state.local);
+    $: $state.local && cache(store, "cats", "catfact.ninja/fact");
     window.state = state;
     window.store = store;
 </script>
@@ -12,6 +12,9 @@
 <button on:click={() => ($state.local = 1010400)}>1010400</button>
 <button on:click={() => ($state.local = 1101000)}>1101000</button>
 <button on:click={() => ($state.local = 1100900)}>1100900</button>
+<button on:click={() => ($store.session = !$store.session)}
+    >toggle session ({$store.session})</button
+>
 <button on:click={() => ($store.dark = !$store.dark)}
     >toggle dark ({$store.dark})</button
 >

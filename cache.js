@@ -76,7 +76,7 @@ export const request = (path, next, force) => new Promise(async resolve => {
     const now = Date.now();
     if (!requests[route].init && (!requests[route].data || force || (requests[route]?.fetched + duration) < now)) {
         requests[route].init = 1;
-        const req = await fetch(`https://${route}`);
+        const req = await fetch(`https://${route}`, { mode: "no-cors" });
         const res = !req || !req.ok ? null : await req.json();
         if (res) {
             requests[route].fetched = now;
